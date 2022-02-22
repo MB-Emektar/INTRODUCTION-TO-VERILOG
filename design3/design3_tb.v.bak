@@ -1,0 +1,59 @@
+`timescale 1 ns / 1 ps
+
+module design3_tb();
+
+
+reg clk, fill, consume;
+wire error;
+wire [7:0] height;
+
+design3 dut (.clk(clk), .fill(fill), .consume(consume), .error(error),.height(height));
+
+
+initial begin
+  clk = 0;
+  fill = 0;
+  consume = 0;
+end
+// Clock setup                
+always begin
+  clk <= 0; #5 ;  clk <= 1; #5 ;
+end
+always begin
+  fill <= 0;
+  consume <= 0;
+  #100;
+  fill <=1;
+  consume <=0;
+  #100;
+  fill <=1;
+  consume <=1;
+  #100
+  fill <=1;
+  consume <=0;
+  #100
+  fill <=1;
+  consume <=0;
+  #100
+  fill <=1;
+  consume <=0;
+  #100
+  fill <= 0;
+  consume <= 1;
+  #100
+  fill <=1;
+  consume <=0;
+  #100
+  fill <=1;
+  consume <=0;
+  #100
+  fill <=1;
+  consume <=0;
+  #100
+  fill <=1;
+  consume <=0;
+  #100;
+  
+end
+
+endmodule
